@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import AddRecipe from "../components/AddRecipe";
 import RecipeList from "../components/RecipeList";
 
-const AllRecipes = ({ baseUrl, recipeList, setRecipeList }) => {
-  
+const AllRecipes = ({ baseUrl }) => {
+  const [recipeList, setRecipeList] = useState([]);
 
   const fetchAllRecipes = async () => {
     //fetching recipes from the API
@@ -26,7 +26,7 @@ const AllRecipes = ({ baseUrl, recipeList, setRecipeList }) => {
     <>
       <h2>Recipes</h2>
       <AddRecipe baseUrl={baseUrl} fetchAllRecipes={fetchAllRecipes} />
-      <RecipeList baseUrl={baseUrl} setRecipeList={setRecipeList} recipeList={recipeList} fetchAllRecipes={fetchAllRecipes} />
+      <RecipeList baseUrl={baseUrl} recipeList={recipeList} fetchAllRecipes={fetchAllRecipes} />
     </>
   );
 };

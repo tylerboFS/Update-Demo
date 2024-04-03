@@ -1,10 +1,16 @@
 import { Link } from "react-router-dom";
-import utils from "../utils/utils";
 
-const RecipeList = ({ recipeList, baseUrl, fetchAllRecipes, setRecipeList }) => {
+const RecipeList = ({ recipeList, baseUrl, fetchAllRecipes }) => {
   const deleteHandler = async (id) => {
-    await utils.deleteRecipe(baseUrl, id);
-    await utils.fetchAllRecipes(baseUrl, setRecipeList)
+    try {
+      const response = await fetch(`${baseUrl}/recipes/${id}`, {
+        method: "DELETE",
+      });
+      console.log("RESPONSE", response);
+      await fetchAllRecipes();
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (

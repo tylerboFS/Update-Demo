@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import utils from "../utils/utils";
 
-const RecipeDetails = ({ baseUrl, setRecipeList }) => {
+const RecipeDetails = ({ baseUrl }) => {
   const [recipe, setRecipe] = useState({});
   const navigate = useNavigate();
 
@@ -35,13 +34,6 @@ const RecipeDetails = ({ baseUrl, setRecipeList }) => {
       <button onClick={() => {
         navigate("/recipes");
       }}>Back</button>
-      <button onClick={async ()=> {
-        //Delete this
-        await utils.deleteRecipe(baseUrl, recipeId);
-        //navigate back
-        await utils.fetchAllRecipes(baseUrl, setRecipeList);
-        navigate("/recipes");
-      }}>Delete</button>
     </>
   );
 };
